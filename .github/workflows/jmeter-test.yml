@@ -31,7 +31,7 @@ jobs:
           jmeter -n -t load_test.jmx -l results.jtl -e -o report
 
       - name: Upload report as artifact
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v2
         with:
           name: jmeter-html-report
           path: report
