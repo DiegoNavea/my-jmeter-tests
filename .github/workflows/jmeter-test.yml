@@ -1,4 +1,4 @@
-name: Run JMeter in Docker
+name: 🔍 Minimal Docker Debug Test
 
 on:
   workflow_dispatch:
@@ -8,14 +8,11 @@ jobs:
     runs-on: self-hosted
 
     steps:
-      - name: Checkout repo
-        uses: actions/checkout@v3
+      - name: ✅ Confirm Runner is Alive
+        run: echo "🟢 Self-hosted runner is alive"
 
-      - name: Run JMeter test inside Docker
-        run: |
-          echo "🟢 Starting JMeter Docker test"
-          docker run --rm \
-            -v "${{ github.workspace }}/tests:/tests" \
-            jmeter-runner \
-            -n -t /tests/testplan.jmx -l /tests/results.jtl -j /tests/jmeter.log
-          echo "✅ Finished Docker run"
+      - name: ✅ Confirm Docker is available
+        run: docker --version
+
+      - name: 🐳 Run simple Docker container (hello-world)
+        run: docker run hello-world
