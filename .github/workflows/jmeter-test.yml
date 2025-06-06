@@ -1,4 +1,4 @@
-name: 🧪 Minimal Docker Debug Test
+name: 🧪 Minimal Debug - Step 1
 
 on:
   workflow_dispatch:
@@ -7,15 +7,5 @@ jobs:
   jmeter-test:
     runs-on: self-hosted
     steps:
-      - name: ✅ Confirm Runner is Alive
-        run: echo "🟢 Self-hosted runner is alive"
-
-      - name: 🐳 Confirm Docker is available
-        run: |
-          echo "Checking Docker version..."
-          docker --version
-
-      - name: 🧪 Run simple Docker container (hello-world)
-        run: |
-          echo "Running hello-world container..."
-          docker run hello-world
+      - name: ✅ Confirm runner prints output
+        run: echo "🟢 Step 1 works — runner is alive and printing to GitHub UI"
