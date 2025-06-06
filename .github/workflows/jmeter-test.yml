@@ -5,27 +5,17 @@ on:
 
 jobs:
   jmeter-test:
-    runs-on: self-hosted  # or ubuntu-latest if not local
+    runs-on: self-hosted
 
     steps:
-      - name: 🧾 Checkout repo
-        run: echo "::group::Checkout repo" && pwd && ls -l && echo "::endgroup::"
+      - name: Checkout repo
+        uses: actions/checkout@v3
 
-      - name: 🛠️ Build Docker image for JMeter
+      - name: Run JMeter test inside Docker
         run: |
-          echo "==> [1/3] Starting Docker build..."
-          docker build -t jmeter-runner ./docker
-          echo "==> [1/3] Docker build complete ✅"
-
-      - name: 📂 List files in test directory
-        run: |
-          echo "==> [2/3] Listing files in tests/"
-          ls -l ./tests || echo "⚠️ tests/ folder not found"
-
-      - name: 🚀 Run JMeter test inside Docker
-        run: |
-          echo "==> [3/3] Running JMeter test..."
+          echo "🟢 Starting JMeter Docker test"
           docker run --rm \
-            -v ${{ github.workspace }}/tests:/tests \
-            jmeter-runner -n -t /tests/testplan.jmx -l /tests/results.jtl -j /tests/jmeter.log
-          echo "✅ JMeter test completed"
+            -v "${{ github.workspace }}/tests:/tests" \
+            jmeter-runner \
+            -n -t /tests/testplan.jmx -l /tests/results.jtl -j /tests/jmeter.log
+          echo "✅ Finished Docker run"
