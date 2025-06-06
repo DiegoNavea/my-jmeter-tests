@@ -7,14 +7,29 @@ jobs:
   jmeter-test:
     runs-on: self-hosted
     steps:
+      - name: 🟢 Step 1 Inside Steps
+        run: echo "🟢 Step 1 Inside Steps"
+
+      - name: 🟢 Step 2 Start Checkout repo
+        run: echo "🟢 Step 2 Start Checkout repo"
+
       - name: ⬇️ Checkout repo
         uses: actions/checkout@v3
 
-      - name: ✅ Step 1 works — runner is alive and printing to GitHub UI
-        run: echo "🟢 Step 1 works — runner is alive and printing to GitHub UI"
+      - name: 🟢 Step 2 End Checkout repo
+        run: echo "🟢 Step 2 End Checkout repo"
 
-      - name: 🐳 Check Docker
-        run: docker --version
+      - name: ✅ Step 3 works — runner is alive and printing to GitHub UI
+        run: echo "🟢 Step 3 works — runner is alive and printing to GitHub UI"
 
-      - name: 🐋 Run hello-world
-        run: docker run hello-world
+      - name: 🐳 Step 4 Check Docker
+        run: |
+          echo "🟢 Step 4 Start Check Docker"
+          docker --version
+          echo "🟢 Step 4 End Check Docker"
+
+      - name: 🐋 Step 5 Run hello-world
+        run: |
+          echo "🟢 Step 5 Start Run hello-world"
+          docker run hello-world
+          echo "🟢 Step 5 End Run hello-world"
