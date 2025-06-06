@@ -1,4 +1,4 @@
-name: 🔍 Minimal Docker Debug Test
+name: 🐞 Minimal Docker Debug Test
 
 on:
   workflow_dispatch:
@@ -11,8 +11,14 @@ jobs:
       - name: ✅ Confirm Runner is Alive
         run: echo "🟢 Self-hosted runner is alive"
 
-      - name: ✅ Confirm Docker is available
+      - name: ✅ Confirm Docker is Available
         run: docker --version
 
-      - name: 🐳 Run simple Docker container (hello-world)
-        run: docker run hello-world
+      - name: 🐋 Pull hello-world (ensure local availability)
+        run: docker pull hello-world
+
+      - name: 🚀 Run hello-world container with verbose logging
+        run: |
+          echo "Starting hello-world container..."
+          docker run --rm hello-world
+          echo "Container execution completed."
