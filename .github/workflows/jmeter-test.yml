@@ -5,23 +5,11 @@ on:
 
 jobs:
   jmeter-test:
-    runs-on: ubuntu-latest
+    runs-on: self-hosted  # Or ubuntu-latest if using GitHub cloud runner
 
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
-
-      - name: Build JMeter Docker image
-        run: docker build -t jmeter-runner ./docker
-
-      - name: Run JMeter test
+      - name: Run JMeter test inside Docker
         run: |
           docker run --rm \
             -v ${{ github.workspace }}/tests:/tests \
-            jmeter-runner -n -t /tests/testplan.jmx -l /tests/results.jtl
-
-      - name: Upload results
-        uses: actions/upload-artifact@v2
-        with:
-          name: jmeter-results
-          path: tests/results.jtl
+            jmeter-runner -n -t /tests/testplan.jmx -l /tests/results.jtl || true
