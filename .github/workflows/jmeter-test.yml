@@ -6,7 +6,6 @@ on:
 jobs:
   jmeter-test:
     runs-on: ubuntu-latest
-    distribution: 'temurin'
 
     steps:
       - name: Checkout code
