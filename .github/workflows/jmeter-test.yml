@@ -5,9 +5,15 @@ on:
 
 jobs:
   jmeter-test:
-    runs-on: self-hosted  # Or ubuntu-latest if using GitHub cloud runner
+    runs-on: self-hosted  # or ubuntu-latest if you move to cloud runner
 
     steps:
+      - name: Checkout repo
+        uses: actions/checkout@v3
+
+      - name: Build JMeter Docker image
+        run: docker build -t jmeter-runner ./docker
+
       - name: Run JMeter test inside Docker
         run: |
           docker run --rm \
