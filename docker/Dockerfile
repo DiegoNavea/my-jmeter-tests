@@ -12,4 +12,4 @@ ENV PATH=$JMETER_HOME/bin:$PATH
 
 WORKDIR /tests
 
-ENTRYPOINT ["jmeter"]
+CMD ["jmeter"]
