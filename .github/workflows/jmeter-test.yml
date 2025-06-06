@@ -6,10 +6,11 @@ on:
 jobs:
   jmeter-test:
     runs-on: ubuntu-latest
+    distribution: 'temurin'
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v2
 
       - name: Build JMeter Docker image
         run: docker build -t jmeter-runner ./docker
@@ -21,7 +22,7 @@ jobs:
             jmeter-runner -n -t /tests/testplan.jmx -l /tests/results.jtl
 
       - name: Upload results
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v2
         with:
           name: jmeter-results
           path: tests/results.jtl
