@@ -1,4 +1,4 @@
-name: 🧪 Minimal Debug - Step 1
+name: 🔍 Minimal Debug - Step 1
 
 on:
   workflow_dispatch:
@@ -7,5 +7,14 @@ jobs:
   jmeter-test:
     runs-on: self-hosted
     steps:
-      - name: ✅ Confirm runner prints output
+      - name: ⬇️ Checkout repo
+        uses: actions/checkout@v3
+
+      - name: ✅ Step 1 works — runner is alive and printing to GitHub UI
         run: echo "🟢 Step 1 works — runner is alive and printing to GitHub UI"
+
+      - name: 🐳 Check Docker
+        run: docker --version
+
+      - name: 🐋 Run hello-world
+        run: docker run hello-world
