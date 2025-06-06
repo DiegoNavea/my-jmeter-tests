@@ -1,4 +1,4 @@
-name: 🐞 Minimal Docker Debug Test
+name: 🧪 Minimal Docker Debug Test
 
 on:
   workflow_dispatch:
@@ -6,19 +6,16 @@ on:
 jobs:
   jmeter-test:
     runs-on: self-hosted
-
     steps:
       - name: ✅ Confirm Runner is Alive
         run: echo "🟢 Self-hosted runner is alive"
 
-      - name: ✅ Confirm Docker is Available
-        run: docker --version
-
-      - name: 🐋 Pull hello-world (ensure local availability)
-        run: docker pull hello-world
-
-      - name: 🚀 Run hello-world container with verbose logging
+      - name: 🐳 Confirm Docker is available
         run: |
-          echo "Starting hello-world container..."
-          docker run --rm hello-world
-          echo "Container execution completed."
+          echo "Checking Docker version..."
+          docker --version
+
+      - name: 🧪 Run simple Docker container (hello-world)
+        run: |
+          echo "Running hello-world container..."
+          docker run hello-world
